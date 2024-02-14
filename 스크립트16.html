@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메롱</title>
+    <style>
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'GmarketSansMedium';
+        }
+
+        .wrap {
+            max-width: 767px;
+            width: calc(100% - 30px);
+            margin: 50px auto;
+        }
+
+        .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            margin-bottom: 50px;
+            padding: 0 20px;
+        }
+
+        .title h2 {
+            font-size: 40px;
+        }
+
+        .title p {
+            font-size: 14px;
+        }
+
+        .box {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: end;
+        }
+
+        .big_box {
+            width: 45%;
+            border-radius: 10px;
+            border: 1px solid #dfdfdf;
+            overflow: hidden;
+        }
+
+        .big_box figure {
+            height: 400px;
+        }
+        .big_box figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .big_box .text {
+            margin: 10px 0;
+            padding: 20px;
+        }
+        .big_box .text h4 {
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+        .big_box .text strong {
+            font-size: 14px;
+        }
+        .small_box {
+            width: 45%;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .small_box .item {
+            width: 45%;
+            height: 160px;
+            border-radius: 5PX;
+            overflow: hidden;
+        }
+        .small_box figure {
+            position: relative;
+            height: 100%;
+        }
+        .small_box .item.on figure::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, .8);
+        }
+        .small_box figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .small_box .text {
+            display: none;
+        }
+
+        @media screen and (max-width: 676px) {
+            .title {
+                padding: 0 5px;
+                margin-bottom: 30px;
+            }
+            .title h2 {
+                font-size: 23px;
+            }
+            .title p {
+                font-size: 12px;
+            }
+            .box {
+                flex-wrap: wrap;
+            }
+            .big_box {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .small_box {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            let bigBoxImage = document.querySelector('.big_box img');
+            let bigBoxTilte = document.querySelector('.big_box h4');
+            let bigBoxText = document.querySelector('.big_box strong');
+            
+            let smallBox = document.querySelectorAll('.small_box .item');
+            let smallBoxImage = document.querySelectorAll('.small_box img');
+            let smallBoxTitle = document.querySelectorAll('.small_box h4');
+            let smallBoxText = document.querySelectorAll('.small_box strong');
+
+            for(let i = 0; i < smallBox.length; i++){ //요소가 여러개일 때 for 사용. let 까먹지 말기!!
+                smallBox[i].addEventListener('mouseenter', () => {
+                    bigBoxImage.src = smallBoxImage[i].src;
+                    bigBoxTilte.innerHTML = smallBoxTitle[i].innerHTML;
+                    bigBoxText.innerHTML = smallBoxText[i].innerHTML;
+
+                    smallBox.forEach((item) => {  //querySelectorAll(요소가 여러개일 때)는 인덱스값[i] 또는 forEach와 함께 사용.
+                        item.classList.add('on');
+                    }); 
+                    smallBox[i].classList.remove('on');
+                })
+            }
+
+        };
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="title">
+            <h2>Gallery</h2>
+            <p>@im__cute__frog 님의 갤러리</p>
+        </div><!-- .title -->
+
+        <div class="box">
+            <div class="big_box">
+                <figure>
+                    <img src="../img/녹색 (30).jfif" alt="">
+                </figure>
+                <div class="text">
+                    <h4>"나 피크닉 왔어~! 날씨 너무 좋다 ㅎㅎ
+                        <br />뒷배경 내 피부색이랑 똑같음 ㅋㅋㅋ"
+                    </h4>
+                    <strong>💗18</strong>
+                </div><!-- .text end -->
+            </div><!-- .big_box end -->
+
+            <div class="small_box">
+                <div class="item">
+                    <figure>
+                        <img src="../img/녹색 (30).jfif" alt="">
+                    </figure>
+                    <div class="text">
+                        <h4>"나 피크닉 왔어~! 날씨 너무 좋다 ㅎㅎ
+                            <br />뒷배경 내 피부색이랑 똑같음 ㅋㅋㅋ"
+                        </h4>
+                        <strong>💗18</strong>
+                    </div><!-- .text end -->
+                </div><!-- .item end -->
+
+                <div class="item on">
+                    <figure>
+                        <img src="../img/녹색 (1).jfif" alt="">
+                    </figure>
+                    <div class="text">
+                        <h4>"나 어제 술 마시고 한시간동안 저러고 있었대
+                            <br />이마에 혹났음,,"
+                        </h4>
+                        <strong>💗23</strong>
+                    </div><!-- .text end -->
+                </div><!-- .item end -->
+
+                <div class="item on">
+                    <figure>
+                        <img src="../img/녹색 (2).jfif" alt="">
+                    </figure>
+                    <div class="text">
+                        <h4>"엄마한테 이빨 아프다했는데 돈까스 먹으러 가쟤
+                            <br />좋은데 찜찜한 이 기분은 뭘까,,"
+                        </h4>
+                        <strong>🤍38</strong>
+                    </div><!-- .text end -->
+                </div><!-- .item end -->
+
+                <div class="item on">
+                    <figure>
+                        <img src="../img/녹색 (26).jfif" alt="">
+                    </figure>
+                    <div class="text">
+                        <h4>"나라에서 허락한 유일한 마약🎧
+                            <br />링딩동링딩동링디ㄱ;딕ㄷ;ㄷ;ㅣㅇ"
+                        </h4>
+                        <strong>🤍8</strong>
+                    </div><!-- .text end -->
+                </div><!-- .item end -->
+
+            </div><!-- .small_box end -->
+        </div>
+    </div>
+
+</body>
+
+</html>
